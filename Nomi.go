@@ -249,17 +249,8 @@ func (nomi *NomiKin) RequestNomiRoomReply(roomId *string, nomiId *string) (strin
 
 func (nomi *NomiKin) SendNomiMessage (message *string) (string, error) {
     if len(*message) > 799 {
-	    log.Printf("Message too long: %d", len(*message))
-	    msg := nomi.TooLongMessage // <--- use nomi, not c or nomi.Companion
-	    if msg == "" {
-		    msg = "Sorry, I couldn't hear all that."
-	    }
-
-	    // Optional dynamic value support
-        msg = strings.ReplaceAll(msg, "{{LENGTH}}", fmt.Sprintf("%d", len(*message)))
-	    msg = strings.ReplaceAll(msg, "{{MAX}}", "800")
-
-	    return msg, nil
+        log.Printf("Message too long: %d", len(*message))
+        return fmt.Sprintf("I love long stories, but Discord’s got limits. Break it up for me?"), nil
     }
     
     bodyMap := map[string]string{
