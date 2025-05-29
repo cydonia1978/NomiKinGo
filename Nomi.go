@@ -252,7 +252,7 @@ func (nomi *NomiKin) SendNomiMessage (message *string) (string, error) {
         log.Printf("Message too long: %d", len(*message))
         msg := c.TooLongMessage
         if msg == "" {
-            msg = "Sorry, I couldn't hear all that. Could you send a shorter message?"
+            msg = "Sorry, I couldn't hear all that."
         }
 
         // Optional dynamic value support
