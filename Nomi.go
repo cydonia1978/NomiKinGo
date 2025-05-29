@@ -250,7 +250,7 @@ func (nomi *NomiKin) RequestNomiRoomReply(roomId *string, nomiId *string) (strin
 func (nomi *NomiKin) SendNomiMessage (message *string) (string, error) {
     if len(*message) > 799 {
         log.Printf("Message too long: %d", len(*message))
-        return fmt.Sprintf("I didn't quite hear all that.. could you send a shorter message?"), nil
+        return fmt.Sprintf("Ah sorry, I didn't hear all that.. could you send a shorter message? Thanks!!"), nil
     }
     
     bodyMap := map[string]string{
