@@ -191,13 +191,9 @@ func (nomi *NomiKin) CreateNomiRoom(name *string, note *string, backchannelingEn
 
 func (nomi *NomiKin) SendNomiRoomMessage(message *string, roomId *string) (string, error) {
     if len(*message) > 799 {
-        log.Printf("Message too long: %d", len(*message))
-        // ← retrieve from ENV or fallback
-        tooLong := os.Getenv("TOO_LONG_MESSAGE")
-        if tooLong == "" {
-            tooLong = "Sorry, your message was too long."
-        }
-        return tooLong, nil
+       log.Printf("Message too long: %d", len(*message))
+        // use the pre‑loaded field on your Companion:
+        return nomi.TooLongMessage, nil
     }
 
     bodyMap := map[string]string{
@@ -243,14 +239,11 @@ func (nomi *NomiKin) RequestNomiRoomReply(roomId *string, nomiId *string) (strin
 
 func (nomi *NomiKin) SendNomiMessage(message *string) (string, error) {
     if len(*message) > 799 {
-        log.Printf("Message too long: %d", len(*message))
-        // ← retrieve from ENV or fallback
-        tooLong := os.Getenv("TOO_LONG_MESSAGE")
-        if tooLong == "" {
-            tooLong = "Sorry, your message was too long"
-        }
-        return tooLong, nil
+       log.Printf("Message too long: %d", len(*message))
+        // use the pre‑loaded field on your Companion:
+        return nomi.TooLongMessage, nil
     }
+
 
     bodyMap := map[string]string{
         "messageText": *message,
